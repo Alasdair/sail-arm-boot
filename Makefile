@@ -14,11 +14,14 @@ default: bootloader.bin
 %.dtb: %.dts
 	dtc -O dtb $< -o $@
 
-bootloader: start.o bootloader.o bootloader.ld
+bootloader: start.o bootloader.o bootloader.ld system.h
 	$(LD) -T bootloader.ld -verbose
 
 bootloader.bin: bootloader
 	$(OBJCOPY) -O binary bootloader bootloader.bin
+
+initramfs: init.c
+	$(CC) $< -static -o initramfs/init
 
 clean:
 	rm -f bootloader

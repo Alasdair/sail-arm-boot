@@ -101,6 +101,6 @@
 #define SCTLR_EL1_ALIGN_DIS	(0 << 1)  /* Alignment check disabled         */
 #define SCTLR_EL1_MMU_DIS	(0)       /* MMU disabled                     */
 
-#define COUNTER_FREQUENCY	(0x1800000)	/* 24MHz */
+#define COUNTER_FREQUENCY	(0x80000)	/* About 0.5MHz */
 
 #endif
