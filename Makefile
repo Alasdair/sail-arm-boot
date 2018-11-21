@@ -20,8 +20,8 @@ bootloader: start.o bootloader.o bootloader.ld system.h
 bootloader.bin: bootloader
 	$(OBJCOPY) -O binary bootloader bootloader.bin
 
-initramfs: init.c
-	$(CC) $< -static -o initramfs/init
+initramfs: init.S
+	$(CC) $< -nostdlib -static -o initramfs/init
 
 clean:
 	rm -f bootloader

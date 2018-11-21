@@ -8,14 +8,14 @@
 /dts-v1/;
 
 / {
-	model = "Sail v8.3-A";
+	model = "Sail v8.5-A";
 	compatible = "arm,sail";
 	interrupt-parent = <&gic>;
 	#address-cells = <2>;
 	#size-cells = <2>;
 
 	chosen {
-	       bootargs = "init=/bin/sh earlycon=pl011,0x3c000000 loglevel=7 debug acpi=off oops=panic keep_bootcon nohlt";
+	       bootargs = "earlycon=pl011,0x3c000000 loglevel=7 debug acpi=off sched_debug keep_bootcon nohlt";
 	};
 
 	cpus {
@@ -31,12 +31,13 @@
 
 	memory@80000000 {
 		device_type = "memory";
-		reg = <0x00000000 0x80000000 0 0x5000000>;
+		reg = <0x00000000 0x80000000 0 0x9000000>;
 	};
 
 	serial0: uart@3c000000 {
 		compatible = "arm,pl011", "arm,primecell";
 		reg = <0x0 0x3c000000 0 0x1000>;
+		interrupts = <1 5 0xf08>;
 	};
 
 	timer {
@@ -45,6 +46,7 @@
 			     <1 14 0xf08>,
 			     <1 11 0xf08>,
 			     <1 10 0xf08>;
+		clock-frequency = <20000000>;
 	};
 
 	gic: interrupt-controller@2c001000 {
