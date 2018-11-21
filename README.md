@@ -2,4 +2,4 @@
 
 Files required to boot Linux on (currently unreleased) Sail ARM model
 
-start.S is based of code in u-boot
+start.S and system.h is based of code in u-boot
