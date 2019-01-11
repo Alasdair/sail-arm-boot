@@ -3,7 +3,7 @@ OBJCOPY=aarch64-linux-gnu-objcopy
 AS=aarch64-linux-gnu-as
 LD=aarch64-linux-gnu-ld
 
-default: bootloader.bin
+.PHONY: initramfs
 
 %.o: %.S
 	$(CC) -nostdlib -c $<
@@ -24,7 +24,8 @@ initramfs: init.S
 	$(CC) $< -nostdlib -static -o initramfs/init
 
 clean:
-	rm -f bootloader
-	rm -f *.o
-	rm -f *.bin
-	rm -f *.dtb
+	-rm -f bootloader
+	-rm -f *.o
+	-rm -f *.bin
+	-rm -f *.dtb
+	-rm -f initramfs/init
